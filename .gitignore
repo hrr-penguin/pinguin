@@ -5,6 +5,7 @@ azure.err
 iisnode.yml
 .floo
 .flooignore
+/client/public/bundle.js
 
 # Icon must ends with two \r.
 Icon
