@@ -1,6 +1,8 @@
 # Pinguin RSS
 
-#client datum
+#client data
 sudo npm install webpack -g
-sudo npm install webpack-dev-server -g
 npm install
+#To run grunt
+on the command line type
+grunt

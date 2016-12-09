@@ -1,7 +1,7 @@
 module.exports = {
   entry: ['./client/src/index.js'],
   output: {
-    path: './client/public',
+    path: './client/public/dist',
     filename: 'bundle.js'
   },
   module: {
