@@ -1,5 +1,5 @@
 const express = require('express');
-const morgran = require('morgan');
+const morgan = require('morgan');
 
 const app = express();
 
