@@ -5,7 +5,6 @@ const LocalStrategy = require('passport-local').Strategy;
 const Models = require('../dbConfig/models/models.js');
 
 module.exports = function(app, express) {
-  console.log('middleware - start');
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
@@ -34,5 +33,4 @@ module.exports = function(app, express) {
       return done(null, result);
     });
   }));
-  console.log('middleware - end');
 };
