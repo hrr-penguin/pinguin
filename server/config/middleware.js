@@ -9,7 +9,7 @@ module.exports = function(app, express) {
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.use(express.static(__dirname + '/../../client/public/'));
-};
+
 
   app.use(require('express-session')({
     secret: 'secrets',
@@ -19,8 +19,6 @@ module.exports = function(app, express) {
 
   app.use(passport.initialize());
   app.use(passport.session());
-
-  app.use(express.static(__dirname + '/../client/public/'));
 
   // TODO: install connect-flash for flash messages
   passport.use(new LocalStrategy(function(username, password, done) {
