@@ -1,11 +1,9 @@
 const express = require('express');
-const morgan = require('morgan');
 
 const app = express();
 
-app.listen(8000);
+require('./config/middleware')(app, express);
 
-app.use(morgan('dev'));
-app.use(express.static(__dirname + '/../client/compile/'));
+app.listen(8000);
 
 module.exports = app;
