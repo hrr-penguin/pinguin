@@ -18,5 +18,13 @@ module.exports = {
         });
       });
     }
+  },
+  feeds: {
+    get: function(user, callback) {
+      let query = 'SELECT uri FROM feeds JOIN users_feeds ON(feeds.id = users_feeds.feed_id) JOIN users ON(users_feeds.user_id = users.id) WHERE users.id = ?';
+      db.query(query, user, function(err, results) {
+        callback(err, results);
+      });
+    }
   }
 };
