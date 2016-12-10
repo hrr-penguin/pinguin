@@ -1,12 +1,9 @@
 const passport = require('passport');
+const helper = require('./../helpers/helpers')
 
 module.exports = function(app, express) {
-  app.get('/api/feed', (req,res) => {console.log("success server get req.param", req.param)});
-  app.post('/api/signup', (req,res) => {console.log("success server post req.body", req.body)});
-  app.post('/api/signin', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/api/signin',
-    failureFlash: 'true'
-  }));
-  app.get('/api/signout', () => {});
+  app.get('/api/feed', helper.getFeed);
+  app.post('/api/signup', helper.signUp);
+  app.post('/api/signin', helper.signIn);
+  app.get('/api/signout', helper.signOut);
 };
