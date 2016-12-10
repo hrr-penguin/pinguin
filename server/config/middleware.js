@@ -1,12 +1,15 @@
 const morgan = require('morgan');
-const bodyParse = require('body-parser');
+const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const Models = require('../dbConfig/models/models.js');
 
 module.exports = function(app, express) {
-
   app.use(morgan('dev'));
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
+  app.use(express.static(__dirname + '/../../client/public/'));
+};
 
   app.use(require('express-session')({
     secret: 'secrets',

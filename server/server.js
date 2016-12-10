@@ -1,6 +1,5 @@
 const express = require('express');
 const db = require('./db/db.js');
-
 const app = express();
 
 require('./config/middleware')(app, express);
