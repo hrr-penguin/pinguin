@@ -32,29 +32,7 @@ class Signup extends React.Component {
     Util.signUp({
       username: this.state.username,
       password: this.state.password
-    }).catch((err) => {
-      console.log('thisis error',err);
-    })
-    // .then( () => {
-    //     Util.signIn({
-    //       username: this.state.username,
-    //       password: this.state.password
-    //     })
-    //   })
-    .then( () => {
-        if(this.state.isValid) {
-          hashHistory.push('/feed');
-        }
-      });
-    event.preventDefault();
-    // console.log("it was submitted", event)
-  }
-
-  handleSubmit(event) {
-    Util.signUp({
-      username: this.state.username,
-      password: this.state.password
-    }).then();
+    });
     if(this.state.isValid) {
       hashHistory.push('/feed');
     }
@@ -72,7 +50,7 @@ class Signup extends React.Component {
           </label>
           <br/>
           <label>
-            Password: <input type="text" name="password" value={this.state.password}onChange={this.handleChangePassword}/>
+            Password: <input type="text" name="password" value={this.state.password} onChange={this.handleChangePassword}/>
           </label>
           <button type="submit" value="Submit">Submit</button>
         </form>

@@ -39,12 +39,15 @@ module.exports = {
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: "/api/signup",
-                data: "test",
+                data: JSON.stringify(pinguin),
                 method: "POST",
                 dataType: "json",
                 contentType: "application/json",
                 success: resolve,
-                error: console.log('reject this signup',reject)
+                error: function(error) {
+                    console.log('reject this signup', error.responseText);
+                    resolve();
+                }
             });
         });
     },
