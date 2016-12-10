@@ -6,7 +6,7 @@ CREATE TABLE users (
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   username varchar(20) NOT NULL UNIQUE,
   password varchar(255) NOT NULL,
-  subscription int
+  subscription int DEFAULT 0
 );
 
 CREATE TABLE feeds (
