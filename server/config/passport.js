@@ -1,7 +1,16 @@
 const LocalStrategy = require('passport-local').Strategy;
 const Models = require('../models/models.js');
+const db = require('../db/db.js');
 
 module.exports = function(passport) {
+  passport.serializeUser(function(user, done) {
+    done(null, user.id);
+  });
+  passport.deserializeUser(function(id, done) {
+    db.query('select * from users where id = ?', [id], function(err, result) {
+        done(err, result[0]);
+    });
+  });
   passport.use('local-signin', new LocalStrategy(function(username, password, done) {
     Models.users.get(username, function(err, result) {
       console.log('Inside login result: ', result);
@@ -15,7 +24,7 @@ module.exports = function(passport) {
         return done(null, false);
       }
       console.log('signin complete!');
-      return done(null, result);
+      return done(null, result[0]);
     });
   }));
 
