@@ -67,7 +67,7 @@ module.exports = {
       });
     });
   },
-  signOut: function (pinguin) {
+  signOut: function () {
     var Promise = promise.Promise;
     return new Promise(function (resolve, reject) {
       $.ajax({

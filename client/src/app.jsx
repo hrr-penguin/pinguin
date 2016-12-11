@@ -1,12 +1,15 @@
 import React from 'react';
+import Nav from './pages/nav.jsx'
 import { Router, Route, Link } from 'react-router';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isSignedIn: false
+      isSignedIn: false,
+      isSignedOut: true
     };
+    // console.log(this.props);
   }
 
   navigate() {
@@ -18,7 +21,7 @@ class App extends React.Component {
     return (
       <div>
         <Nav location={location}/>
-        {this.props.children}
+        {this.props.children || <p> You are {!this.state.isSignedIn && 'not'} logged in. </p>}
       </div>
     )
   }
