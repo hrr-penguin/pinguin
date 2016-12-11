@@ -15,9 +15,9 @@ CREATE TABLE feeds (
 );
 
 CREATE TABLE users_feeds (
-  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id int NOT NULL,
   feed_id int NOT NULL,
   FOREIGN KEY(user_id) REFERENCES users(id),
-  FOREIGN KEY(feed_id) REFERENCES feeds(id)
+  FOREIGN KEY(feed_id) REFERENCES feeds(id),
+  UNIQUE (user_id, feed_id)
 );
