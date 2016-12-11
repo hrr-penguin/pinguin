@@ -33,9 +33,9 @@ class Signup extends React.Component {
       username: this.state.username,
       password: this.state.password
     });
-    if(this.state.isValid) {
-      hashHistory.push('/feed');
-    }
+    // if(this.state.isValid) {
+    //   hashHistory.push('/feed');
+    // }
     event.preventDefault();
     // console.log("it was submitted", event)
   }

@@ -73,7 +73,7 @@ module.exports = {
       $.ajax({
         url: "/api/signout",
         data: JSON.stringify(pinguin),
-        method: "PUT",
+        method: "POST",
         dataType: "json",
         contentType: "application/json",
         success: resolve,
