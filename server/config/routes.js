@@ -1,15 +1,18 @@
-const helper = require('./../helpers/helpers')
+const helper = require('./../helpers/helpers');
+const passport = require('passport');
 
-module.exports = function(app, express, passport) {
-  app.get('/api/feed', helper.getFeed);
-  app.post('/api/feed', helper.postFeed);
-  app.post('/api/signup', passport.authenticate('local-signup', {
-      successRedirect: '/#/',
-      failureRedirect: '/#/signup'
-    }));
-  app.post('/api/signin', passport.authenticate('local-signin', {
-      successRedirect: '/#/',
-      failureRedirect: '/#/signin'
-    }));
-  app.get('/api/signout', helper.signOut);
+module.exports = function(app, express) {
+  app.get('/api/feed', loggedIn, helper.getFeed);
+  app.post('/api/feed', loggedIn, helper.postFeed);
+  app.post('/api/signup', passport.authenticate('local-signup'), helper.signUp);
+  app.post('/api/signin', passport.authenticate('local-signin'), helper.signIn);
+  app.get('/api/signout', loggedIn, helper.signOut);
 };
+
+function loggedIn(req, res, next) {
+    if (req.user) {
+        next();
+    } else {
+        res.sendStatus(401);
+    }
+}
