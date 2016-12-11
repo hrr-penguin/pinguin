@@ -1,9 +1,7 @@
 const express = require('express');
 const app = express();
-// const passport = require('passport');
 
 require('./config/middleware')(app, express);
-// require('./config/passport')(passport);
 require('./config/routes')(app, express);
 
 

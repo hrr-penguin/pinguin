@@ -20,7 +20,7 @@ module.exports = function(app, express) {
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      maxAge: 2419200000
+      maxAge: 2419200000  // 28 days
     }
   }));
 
