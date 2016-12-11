@@ -12,6 +12,18 @@ module.exports = {
     })
   },
 
+  postFeed: function(req, res) {
+    // TODO: send in user id instead of the hard coded 1.
+    Models.feeds.post(1, req.body.url, function(err, results) {
+      if (err) {
+        console.log('helpers.postFeed error: ', err);
+      } else {
+        console.log(results);
+        res.sendStatus(201);
+      }
+    });
+  },
+
   signUp: function(req, res) {
     console.log("success server post req.body", req.body);
   },
