@@ -42,22 +42,9 @@ class Feed extends React.Component {
             feeds.map( (obj) => {
               return (
                 <div>
-                whyyyyyyy
-                  <label>this feed</label>
+                  <label>{obj.feed.meta.link}</label>
                   <ul>
                   <li> {obj.feed.entries[0].title} </li>
-                  {
-                    // obj.feed.entries.map((entry) => {
-                    //   return (
-                    //     <li>
-                    //       Title: <span>{entry.title}</span>
-                    //       Author: <span>{entry.author}</span>
-                    //       Description: <p>{entry.description}</p>
-                    //     </li>
-                    //   )
-                    // })
-                  }
-                  </ul>
                 </div>
               )
             })
