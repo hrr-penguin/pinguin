@@ -19,7 +19,6 @@
     "babel": "^6.5.2",
     "babel-loader": "^6.2.8",
     "bcrypt": "^1.0.1",
-    "bluebird": "^3.4.6",
     "connect-flash": "^0.1.1",
     "es6-promise": "^4.0.5",
     "express": "^4.14.0",

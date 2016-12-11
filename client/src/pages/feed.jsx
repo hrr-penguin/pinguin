@@ -1,6 +1,5 @@
 import React from 'react';
 import { Router, Route, Link } from 'react-router';
-// import Promise from 'bluebird';
 
     var subscriptions = {urls: ['http://www.evilmadscientist.com/feed/','http://boingboing.net/feed', 'http://hackaday.com/feed/']}
 
