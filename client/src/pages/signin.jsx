@@ -45,6 +45,7 @@ class Signin extends React.Component {
     return (
       <div>
         <h1>SIGNIN</h1>
+        <a href="/api/google">Sign In with Google</a>
         <form onSubmit={this.handleSubmit}>
           <label>
             Username: <input type="text" name="username" value={this.state.username} onChange={this.handleChangeUserName}/>

@@ -8,7 +8,7 @@ module.exports = {
       } else {
         res.json({ urls: results.map(item => item.uri) });
       }
-    })
+    });
   },
 
   postFeed: function(req, res) {
@@ -33,4 +33,4 @@ module.exports = {
     req.logout();
     res.redirect('/');
   }
-}
+};

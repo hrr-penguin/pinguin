@@ -3,8 +3,10 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const Models = require('../models/models.js');
 const db = require('../db/db.js');
+const config = require('./config.js');
 
 module.exports = function(app, express) {
   app.use(morgan('dev'));
@@ -33,7 +35,7 @@ module.exports = function(app, express) {
 
   passport.deserializeUser(function(id, done) {
     db.query('select * from users where id = ?', [id], function(err, result) {
-        done(err, result[0]);
+      done(err, result[0]);
     });
   });
 
@@ -56,8 +58,7 @@ module.exports = function(app, express) {
 
   passport.use('local-signup', new LocalStrategy(function(username, password, done) {
     Models.users.get(username, function(err, rows) {
-      if (err) {
-        return done(err); }
+      if (err) { return done(err); }
       if (rows[0]) {
         return done(null, false);
       } else {
@@ -75,6 +76,28 @@ module.exports = function(app, express) {
           return done(null, newUser);
         });
       }
+    });
+  }));
+
+  passport.use('google', new GoogleStrategy({
+    clientID: config.GOOGLE_CLIENT_ID,
+    clientSecret: config.GOOGLE_CLIENT_SECRET,
+    callbackURL: 'http://localhost:8000/api/google/return'
+  }, function(accessToken, redreshToken, profile, done) {
+    console.log('PROFILE', profile);
+    console.log('EMAIL', profile.emails[0].value);
+    Models.users.get(profile.id, function(err, results) {
+      if (err) { return done(err); }
+      if (!results.length) {
+        let user = {};
+        user.username = profile.id;
+        Models.users.post(profile.id, profile.id, function(err, results) {
+          if (err) { console.error(err); }
+          user.id = results.insertId;
+          return done(null, user);
+        });
+      }
+      return done(null, results[0]);
     });
   }));
 
