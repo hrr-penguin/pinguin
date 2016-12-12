@@ -86,12 +86,13 @@ module.exports = function(app, express) {
   }, function(accessToken, redreshToken, profile, done) {
     console.log('PROFILE', profile);
     console.log('EMAIL', profile.emails[0].value);
-    Models.users.get(profile.id, function(err, results) {
+    Models.users.get(profile.emails[0].value, function(err, results) {
       if (err) { return done(err); }
       if (!results.length) {
         let user = {};
-        user.username = profile.id;
-        Models.users.post(profile.id, profile.id, function(err, results) {
+        user.username = profile.emails[0].value;
+        user.password = profile.id;
+        Models.users.post(profile.emails[0].value, profile.id, function(err, results) {
           if (err) { console.error(err); }
           user.id = results.insertId;
           return done(null, user);
