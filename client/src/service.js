@@ -1,9 +1,6 @@
-// var $ = require("jquery");
-// var promise = require("es6-promise");
 import $ from 'jquery';
 import promise from 'es6-promise';
 import { Link } from 'react-router'
-// var resourceUrl = "http://localhost:7777/Pinguinzer";
 
 module.exports = {
   getFeed: function () {
@@ -46,7 +43,7 @@ module.exports = {
         success: resolve,
         error: function(error) {
           console.log('reject this signup', error.responseText);
-          resolve();
+          reject();
         }
       });
     });

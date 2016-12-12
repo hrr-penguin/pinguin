@@ -6,10 +6,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isSignedIn: false,
-      isSignedOut: true
+      isSignedIn: false
     };
-    // console.log(this.props);
   }
 
   navigate() {
