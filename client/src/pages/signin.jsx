@@ -1,6 +1,6 @@
 import React from 'react';
 import Util from '../service.js';
-import { hashHistory } from 'react-router'
+import { hashHistory } from 'react-router';
 
 
 class Signin extends React.Component {
@@ -19,13 +19,13 @@ class Signin extends React.Component {
   handleChangeUserName(event) {
     this.setState({
       username: event.target.value
-    })
+    });
   }
 
   handleChangePassword(event) {
     this.setState({
       password: event.target.value
-    })
+    });
   }
 
   handleSubmit(event) {
@@ -57,7 +57,7 @@ class Signin extends React.Component {
           <button type="submit" value="Submit">Submit</button>
         </form>
       </div>
-    )
+    );
   }
 }
 
