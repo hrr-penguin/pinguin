@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router, Route, Link } from 'react-router';
+import FeedEntryList from './FeedEntryList';
 
     var subscriptions = {urls: ['http://www.evilmadscientist.com/feed/','http://boingboing.net/feed', 'http://hackaday.com/feed/']}
 
@@ -21,30 +22,28 @@ class Feed extends React.Component {
         this.setState({ feeds: thing });
       });
     }
-    console.log("this is thing", thing);
-    return thing;
+    console.log("this is the thing", thing);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.handleFetchFeed();
   }
 
 
   render() {
-    //const { title } = this.props;
     const feeds = this.state.feeds;
-    console.log(feeds);
     return (
       <div>
         <h1>FEED</h1>
-        <div id="feed">
+        <div id="feed" className="feed-container">
           {
             feeds.map( (obj) => {
               return (
-                <div>
-                  <label>{obj.feed.meta.link}</label>
+                <div key={obj.feed.meta['rss:title']['#']}>
+                  <label>{obj.feed.meta['rss:title']['#']}</label>
                   <ul>
-                  <li> {obj.feed.entries[0].title} </li>
+                    <FeedEntryList entries={obj.feed.entries}/>
+                  </ul>
                 </div>
               )
             })

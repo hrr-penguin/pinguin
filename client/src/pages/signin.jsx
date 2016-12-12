@@ -32,7 +32,7 @@ class Signin extends React.Component {
     Util.signIn({
       username: this.state.username,
       password: this.state.password
-    // }).then( (data) => {
+ })//.then( (data) => {
     //   if(this.state.isValid) {
     //     hashHistory.push('/feed');
     //   }
