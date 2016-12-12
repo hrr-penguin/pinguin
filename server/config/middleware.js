@@ -56,8 +56,7 @@ module.exports = function(app, express) {
 
   passport.use('local-signup', new LocalStrategy(function(username, password, done) {
     Models.users.get(username, function(err, rows) {
-      if (err) {
-        return done(err); }
+      if (err) { return done(err); }
       if (rows[0]) {
         return done(null, false);
       } else {

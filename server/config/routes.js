@@ -10,9 +10,9 @@ module.exports = function(app, express) {
 };
 
 function loggedIn(req, res, next) {
-    if (req.user) {
-        next();
-    } else {
-        res.sendStatus(401);
-    }
+  if (req.user) {
+    next();
+  } else {
+    res.sendStatus(401);
+  }
 }
