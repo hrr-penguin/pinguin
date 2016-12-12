@@ -16,7 +16,6 @@ module.exports = {
       if (err) {
         console.log('helpers.postFeed error: ', err);
       } else {
-        console.log(results);
         res.sendStatus(201);
       }
     });

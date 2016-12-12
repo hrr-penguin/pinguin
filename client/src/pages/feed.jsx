@@ -1,32 +1,31 @@
 import React from 'react';
 import { Router, Route, Link } from 'react-router';
 import FeedEntryList from './FeedEntryList';
+import Util from '../service.js';
 
-    var subscriptions = {urls: ['http://www.evilmadscientist.com/feed/','http://boingboing.net/feed', 'http://hackaday.com/feed/']}
 
 class Feed extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      feeds: [],
+      feeds: []
     };
-    var thing;
     this.handleFetchFeed = this.handleFetchFeed.bind(this);
   }
 
-  handleFetchFeed(event) {
-    var thing=[];
-    for (var i = 0; i < subscriptions.urls.length; i++) {
-      feednami.load(subscriptions.urls[i], (feed) => {
-        thing.push(feed);
-        this.setState({ feeds: thing });
+  handleFetchFeed( { urls } ) {
+    var feeds = [];
+    for (var i = 0; i < urls.length; i++) {
+      feednami.load(urls[i], (feed) => {
+        feeds.push(feed);
+        this.setState({ feeds: feeds });
       });
     }
-    console.log("this is the thing", thing);
   }
 
   componentWillMount() {
-    this.handleFetchFeed();
+    Util.getFeed()
+      .then(this.handleFetchFeed);
   }
 
 

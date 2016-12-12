@@ -46,7 +46,7 @@ module.exports = {
         success: resolve,
         error: function(error) {
           console.log('reject this signup', error.responseText);
-          resolve();
+          reject();
         }
       });
     });
