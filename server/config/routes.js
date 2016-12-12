@@ -11,7 +11,7 @@ module.exports = function(app, express) {
     'https://www.googleapis.com/auth/userinfo.email'
   ] }), helper.signIn);
 
-  app.get('/api/google/return', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
+  app.get('/api/google/return', passport.authenticate('google', { failureRedirect: '/signin' }), function(req, res) {
     res.redirect('/');
   });
 
