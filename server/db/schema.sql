@@ -25,11 +25,12 @@ CREATE TABLE users_feeds (
 CREATE TABLE article (
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   url varchar(255) NOT NULL UNIQUE,
-  yays int NOT NULL,
-  nays int NOT NULL,
-  fakes int NOT NULL,
-  legits int NOT NULL,
-  ratings int NOT NULL
+  yays int NOT NULL DEFAULT 0,
+  nays int NOT NULL DEFAULT 0,
+  fakes int NOT NULL DEFAULT 0,
+  legits int NOT NULL DEFAULT 0,
+  ratings int(5) unsigned DEFAULT NULL,
+  rating_count int NOT NULL DEFAULT 0,
 );
 
 CREATE TABLE comment (
