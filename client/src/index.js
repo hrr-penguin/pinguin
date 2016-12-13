@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 import App from './app.jsx';
-import Pinguin from './pages/pinguin';
 import Feed from './pages/feed';
 import AddPinguin from './pages/addPinguin';
 import Signup from './pages/signup';
@@ -14,8 +13,7 @@ import Signout from './pages/signout';
 ReactDOM.render(
   <Router history={ hashHistory } >
     <Route path="/" component={ App } >
-      <IndexRoute component={ Pinguin }></IndexRoute>
-      <Route path="pinguin" component={ Pinguin } />
+      <IndexRoute component={ Feed }></IndexRoute>
       <Route path="feed" component={ Feed } />
       <Route path="addpinguin" component={ AddPinguin } />
       <Route path="signup" component={ Signup } />

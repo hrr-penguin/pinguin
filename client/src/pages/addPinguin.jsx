@@ -28,14 +28,35 @@ class AddPinguin extends React.Component {
   }
 
   render() {
+    const btnStyle = {
+      width: '100px',
+      height: '40px',
+      backgroundColor: '#000',
+      color: '#fff',
+      borderColor: '#FF9800',
+      borderStyle: 'solid',
+      borderWidth: '3px',
+      outline: 'none'
+    };
+
+    const inputStyle = {
+      width: '200px',
+      height: '32px',
+      backgroundColor: '#000',
+      color: '#fff',
+      borderColor: '#FF9800',
+      borderStyle: 'solid',
+      borderWidth: '3px',
+      borderRight: 'none',
+      outline: 'none',
+      marginLeft: '5px'
+    };
+
     return (
       <div>
-        <h1>Add a Pinguin</h1>
         <form onSubmit={this.handleSubmit}>
-            <label>
-            Add RSS Feed URL: <input type="text" name="url" value={this.state.url} onChange={this.handleChange}/>
-          </label>
-          <button type="submit"> Submit </button>
+          <input type="text" name="url" value={this.state.url} onChange={this.handleChange} style={inputStyle} placeholder="Insert url here..." />
+          <button type="submit" style={btnStyle}> Add a Pinguin </button>
         </form>
       </div>
     )
