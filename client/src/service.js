@@ -68,14 +68,13 @@ module.exports = {
   signOut: function () {
     var Promise = promise.Promise;
     return new Promise(function (resolve, reject) {
+      console.log('signout!');
       $.ajax({
         url: "/api/signout",
-        data: JSON.stringify(pinguin),
-        method: "POST",
-        dataType: "json",
-        contentType: "application/json",
-        success: resolve,
-        error: reject
+        method: "GET",
+        complete: function(a, b) {
+          console.log(a,b);
+        }
       });
     });
   }

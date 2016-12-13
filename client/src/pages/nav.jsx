@@ -1,8 +1,7 @@
 import React from 'react';
-import { Router, Route, Link } from 'react-router';
+import { Router, Route, Link, hashHistory } from 'react-router';
 import AddPinguin from './addPinguin';
 import Util from '../service.js';
-
 
 class Nav extends React.Component {
   constructor(props) {
@@ -10,6 +9,11 @@ class Nav extends React.Component {
     this.state = {
       isSignedIn: true
     };
+  }
+
+  logout() {
+    Util.signOut();
+    console.log('tacos from logout');
   }
 
   navigate() {
@@ -57,7 +61,10 @@ const navStyle = {
 var IsSignedIn = (props) => (
   <div style={navStyle}>
     <AddPinguin />
-    <button style={btnStyle} onClick={() => Util.signOut()}>Signout</button>
+    <button style={btnStyle} onClick={function(e) {
+      Util.signOut();
+      hashHistory.push('/signin');
+    }}>Signout</button>
   </div>
 );
 

@@ -31,23 +31,25 @@ class Feed extends React.Component {
 
   render() {
     const feeds = this.state.feeds;
+    const divStyle = {
+      height: '100%',
+      width: '90%',
+      margin: 'auto'
+    }
     return (
-      <div>
-        <h1>FEED</h1>
-        <div id="feed" className="feed-container">
-          {
-            feeds.map( (obj) => {
-              return (
-                <div key={obj.feed.meta['rss:title']['#']}>
-                  <label>{obj.feed.meta['rss:title']['#']}</label>
-                  <ul>
-                    <FeedEntryList entries={obj.feed.entries}/>
-                  </ul>
-                </div>
-              )
-            })
-          }
-        </div>
+      <div id="feed" className="feed-container" style={divStyle}>
+        {
+          feeds.map( (obj) => {
+            return (
+              <div key={obj.feed.meta['rss:title']['#']}>
+                <label>{obj.feed.meta['rss:title']['#']}</label>
+                <ul>
+                  <FeedEntryList entries={obj.feed.entries}/>
+                </ul>
+              </div>
+            )
+          })
+        }
       </div>
     )
   }
