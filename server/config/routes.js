@@ -16,6 +16,9 @@ module.exports = function(app, express) {
   });
 
   app.get('/api/signout', loggedIn, helper.signOut);
+
+  app.get('/api/comment', loggedIn, helper.getComments);
+  app.post('/api/comment', loggedIn, helper.postComment);
 };
 
 function loggedIn(req, res, next) {
