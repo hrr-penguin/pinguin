@@ -1,19 +1,34 @@
 import React from 'react';
+import Util from '../service.js';
 
-class FeedEntryList extends React.Component {
+class Comments extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      comments: null
+    };
+
+  }
+
+  componentWillMount() {
+    Util.getComments()
+      .then(function(data){
+        this.setState({comments: data});
+        console.log('comments data: ', data);
+      });
+  }
 
   render() {
-    const entries = this.props.entries;
     let count = 0;
-
+    let comments = this.state.comments;
     return (
       <div>
           {
-            entries.map( (entry) => {
+            comments.map( (comment) => {
               return (
-                <div className="entry" key={count++}>
+                <div className="comment" key={count++}>
                   <ul >
-                    <li><a href={entry.link} target="_blank">{entry.title}</a></li>
+                    <li>{comment.comment}</li>
                   </ul>
                 </div>
               )
@@ -24,4 +39,4 @@ class FeedEntryList extends React.Component {
   }
 }
 
-export default FeedEntryList;
+export default Comments;

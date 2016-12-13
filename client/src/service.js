@@ -68,7 +68,7 @@ module.exports = {
         error: reject
       });
     });
-  }
+  },
   // deleteFeed: function (Pinguin) {
   //   var Promise = promise.Promise;
   //   return new Promise(function (resolve, reject) {
@@ -81,4 +81,30 @@ module.exports = {
   //     });
   //   });
   // }
+  getComments: function () {
+    var Promise = promise.Promise;
+    return new Promise(function (resolve, reject) {
+      $.ajax({
+        url: "/api/comment",
+        method: "GET",
+        dataType: "json",
+        success: resolve,
+        error: reject
+      });
+    });
+  },
+  postComment: function (comment) {
+    var Promise = promise.Promise;
+    return new Promise(function (resolve, reject) {
+      $.ajax({
+        url: "/api/comment",
+        data: JSON.stringify(comment),
+        method: "POST",
+        dataType: "json",
+        contentType: "application/json",
+        success: resolve,
+        error: reject
+      });
+    });
+  }
 };
