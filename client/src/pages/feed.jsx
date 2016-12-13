@@ -24,7 +24,7 @@ class Feed extends React.Component {
           let img = desc.getElementsByTagName('img')[0];
           entry.image.url = img.src;
           entry.image.alt = img.alt;
-          entry.summary = entry.summary.replace(/<(?!\/?a(?=>|\s.*>))\/?.*?>/g, '');
+          entry.description = entry.description.replace(/<(?!\/?a(?=>|\s.*>))\/?.*?>/g, '');
         });
         feeds.push(feed);
         this.setState({ feeds: feeds });
