@@ -32,11 +32,11 @@ class Signin extends React.Component {
     Util.signIn({
       username: this.state.username,
       password: this.state.password
-    });//.then( (data) => {
-    //   if(this.state.isValid) {
-    //     hashHistory.push('/feed');
-    //   }
-    // });
+    }).then(function() {
+      console.log('tacos');
+    }).catch(function() {
+      console.log('burritos');
+    })
     event.preventDefault();
     // console.log("it was submitted", event)
   }

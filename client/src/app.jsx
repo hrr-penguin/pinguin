@@ -16,8 +16,13 @@ class App extends React.Component {
 
   render() {
     const location = this.props;
+    const divStyle = {
+      backgroundColor: '#fff',
+      width: '80%',
+      margin: 'auto'
+    };
     return (
-      <div>
+      <div style={divStyle}>
         <Nav location={location}/>
         {this.props.children || <p> You are {!this.state.isSignedIn && 'not'} logged in. </p>}
       </div>

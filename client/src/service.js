@@ -57,10 +57,11 @@ module.exports = {
         url: "/api/signin",
         data: JSON.stringify(pinguin),
         method: "POST",
-        dataType: "json",
         contentType: "application/json",
-        success: resolve,
-        error: reject
+        complete: function(data, text) {
+          console.log(data);
+          console.log(text);
+        },
       });
     });
   },
