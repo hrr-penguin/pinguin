@@ -1,10 +1,11 @@
+DROP DATABASE rss;
 CREATE DATABASE rss;
 
 USE rss;
 
 CREATE TABLE users (
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  username varchar(20) NOT NULL UNIQUE,
+  username varchar(50) NOT NULL UNIQUE,
   password varchar(255) NOT NULL,
   subscription int
 );
