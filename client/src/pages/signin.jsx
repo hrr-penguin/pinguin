@@ -86,17 +86,10 @@ class Signin extends React.Component {
           <label htmlFor="username">Username</label><br />
           <input id="username" type="text" name="username" value={this.state.username} onChange={this.handleChangeUserName} style={inputStyle}/>
           <br/>
-<<<<<<< HEAD
-          <label>
-            Password: <input type="text" name="password" value={this.state.password}onChange={this.handleChangePassword}/>
-          </label>
-          <button type="submit" value="Submit">Sign In</button>
-=======
           <label htmlFor="password">Password</label><br />
           <input id="password" type="password" name="password" value={this.state.password}onChange={this.handleChangePassword} style={inputStyle}/>
           <br /><br />
           <button type="submit" value="Submit" style={btnStyle}>Submit</button>
->>>>>>> hrr-penguin/master
         </form>
         {this.state.showError ? <p>Invalid username or password </p> : null }
       </div>
