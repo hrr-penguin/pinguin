@@ -4,7 +4,7 @@ const saltRounds = 10;
 
 let replaceIntoJoin = function(params, callback) {
   let query = 'REPLACE INTO users_feeds (user_id, feed_id) VALUES (?, ?)';
-  db. query(query, params, function(err, results) {
+  db.query(query, params, function(err, results) {
     if (err) {
       console.log('models.replaceIntoJoin: ', err);
     } else {
@@ -63,6 +63,53 @@ module.exports = {
           // uri added to the database so go ahead and link to user.
           replaceIntoJoin([user, results.insertId], callback);
         }
+      });
+    }
+  },
+  comment: {
+    post: function(user_id, url, comment, callback) {
+      let query = 'INSERT INTO article (url) VALUE (?)';
+      db.query(query, url, function(err, results) {
+        if (err) {
+          if (err.errno === 1062) {
+            let query = 'SELECT id FROM article WHERE article.url = ?';
+            db.query(query, url, function(err, results) {
+              let query = 'INSERT INTO comments (article_id, user_id, comment, yay, nay, fake, legit, rating) VALUE (?)';
+              db.query(query, comment, function(err, results) {
+                if (err) {
+                  console.log('models.comment.post error: ', err);
+                } else {
+                  callback(err,results);
+                }
+              });
+            });
+          }
+        } else {
+            let query = 'INSERT INTO comments (article_id, user_id, comment, yay, nay, fake, legit, rating) VALUE (?)';
+            db.query(query, comment, function(err, results) {
+              if (err) {
+                console.log('models.comment.post error: ', err);
+              } else {
+                callback(err,results);
+              }
+            });
+        }
+      });
+    }
+  },
+  comments: {
+    get: function(url, callback) {
+      let query = 'SELECT comment FROM comments JOIN article_comments ON(comments.id = article_comments.comment_id) JOIN article ON(article_comments.article_id = article.id) WHERE article.url = ?';
+      db.query(query, url, function(err, results) {
+        callback(err, results);
+      });
+    }
+  },
+  article: {
+    get: function(url, callback) {
+      let query = 'SELECT yays,nays,fakes,legits FROM article WHERE article.url = ?';
+      db.query(query, url, function(err, results) {
+        callback(err, results);
       });
     }
   }

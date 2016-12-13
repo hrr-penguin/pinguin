@@ -38,29 +38,23 @@ module.exports = {
         url: "/api/signup",
         data: JSON.stringify(pinguin),
         method: "POST",
-        dataType: "json",
         contentType: "application/json",
         success: resolve,
-        error: function(error) {
-          console.log('reject this signup', error.responseText);
-          reject();
-        }
+        error: reject
       });
     });
   },
   signIn: function (pinguin) {
     var Promise = promise.Promise;
-    console.log("Promise logger",Promise);
-    console.log("Hitting Util signIn",pinguin);
     return new Promise(function (resolve, reject) {
       $.ajax({
         url: "/api/signin",
         data: JSON.stringify(pinguin),
         method: "POST",
-        dataType: "json",
         contentType: "application/json",
         success: resolve,
         error: reject
+        },
       });
     });
   },
@@ -69,9 +63,7 @@ module.exports = {
     return new Promise(function (resolve, reject) {
       $.ajax({
         url: "/api/signout",
-        data: JSON.stringify(pinguin),
-        method: "POST",
-        dataType: "json",
+        method: "GET",
         contentType: "application/json",
         success: resolve,
         error: reject

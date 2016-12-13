@@ -1,6 +1,6 @@
 import React from 'react';
 import Util from '../service.js';
-import { hashHistory } from 'react-router'
+import { hashHistory } from 'react-router';
 
 
 class Signin extends React.Component {
@@ -9,7 +9,7 @@ class Signin extends React.Component {
     this.state = {
       username: '',
       password: '',
-      isValid: true
+      showError: false
     };
     this.handleChangeUserName = this.handleChangeUserName.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
@@ -19,44 +19,88 @@ class Signin extends React.Component {
   handleChangeUserName(event) {
     this.setState({
       username: event.target.value
-    })
+    });
   }
 
   handleChangePassword(event) {
     this.setState({
       password: event.target.value
-    })
+    });
   }
 
   handleSubmit(event) {
     Util.signIn({
       username: this.state.username,
       password: this.state.password
-    });//.then( (data) => {
-    //   if(this.state.isValid) {
-    //     hashHistory.push('/feed');
-    //   }
-    // });
+    }).then( (data) => {
+      this.props.updateAuth();
+      hashHistory.push('/feed');
+    })
+    .catch( (err) => {
+      this.setState({ showError: true });
+    });
     event.preventDefault();
-    // console.log("it was submitted", event)
   }
 
   render() {
+    const divStyle = {
+      width: '50%',
+      margin: 'auto',
+      textAlign: 'center',
+      padding: '100px'
+    };
+
+    const formStyle = {
+      display: 'inline-block',
+      textAlign: 'center'
+    };
+
+    const btnStyle = {
+      width: '100px',
+      height: '40px',
+      backgroundColor: '#000',
+      color: '#fff',
+      borderColor: '#FF9800',
+      borderStyle: 'solid',
+      borderWidth: '3px',
+      outline: 'none'
+    };
+
+    const inputStyle = {
+      width: '200px',
+      height: '32px',
+      backgroundColor: '#000',
+      color: '#fff',
+      borderColor: '#FF9800',
+      borderStyle: 'solid',
+      borderWidth: '3px',
+      outline: 'none',
+      marginLeft: '5px'
+    };
+
     return (
-      <div>
-        <h1>SIGNIN</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Username: <input type="text" name="username" value={this.state.username} onChange={this.handleChangeUserName}/>
-          </label>
+      <div style={divStyle}>
+        <h1>Sign In</h1>
+        <a href="/api/google">Sign In with Google</a>
+        <form onSubmit={this.handleSubmit} style={formStyle}>
+          <label htmlFor="username">Username</label><br />
+          <input id="username" type="text" name="username" value={this.state.username} onChange={this.handleChangeUserName} style={inputStyle}/>
           <br/>
+<<<<<<< HEAD
           <label>
             Password: <input type="text" name="password" value={this.state.password}onChange={this.handleChangePassword}/>
           </label>
-          <button type="submit" value="Submit">Submit</button>
+          <button type="submit" value="Submit">Sign In</button>
+=======
+          <label htmlFor="password">Password</label><br />
+          <input id="password" type="password" name="password" value={this.state.password}onChange={this.handleChangePassword} style={inputStyle}/>
+          <br /><br />
+          <button type="submit" value="Submit" style={btnStyle}>Submit</button>
+>>>>>>> hrr-penguin/master
         </form>
+        {this.state.showError ? <p>Invalid username or password </p> : null }
       </div>
-    )
+    );
   }
 }
 
