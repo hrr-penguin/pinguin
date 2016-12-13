@@ -1,4 +1,5 @@
 import React from 'react';
+import FeedItem from './Feeditem';
 
 
 class FeedEntryList extends React.Component {
@@ -9,17 +10,14 @@ class FeedEntryList extends React.Component {
 
     return (
       <div>
-          {
-            entries.map( (entry) => {
-              return (
-                <div className="entry" key={count++}>
-                  <ul >
-                    <li><a href={entry.link} target="_blank">{entry.title}</a></li>
-                  </ul>
-                </div>
-              )
-            })
-          }
+        {entries.map( (entry) => {
+          return (
+            <FeedItem
+              key={count++}
+              info={entry}
+            />
+          )
+        })}
       </div>
     )
   }
