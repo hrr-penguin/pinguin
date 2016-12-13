@@ -14,7 +14,7 @@ class FeedEntryList extends React.Component {
               return (
                 <div className="entry" key={count++}>
                   <ul >
-                    <li><a href={entry.link}>{entry.title}</a></li>
+                    <li><a href={entry.link} target="_blank">{entry.title}</a></li>
                   </ul>
                 </div>
               )

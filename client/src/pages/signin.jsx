@@ -9,7 +9,7 @@ class Signin extends React.Component {
     this.state = {
       username: '',
       password: '',
-      isValid: true
+      showError: false
     };
     this.handleChangeUserName = this.handleChangeUserName.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
@@ -32,11 +32,13 @@ class Signin extends React.Component {
     Util.signIn({
       username: this.state.username,
       password: this.state.password
-    }).then(function() {
-      console.log('tacos');
-    }).catch(function() {
-      console.log('burritos');
+    }).then( (data) => {
+      this.props.updateAuth();
+      hashHistory.push('/feed');
     })
+    .catch( (err) => {
+      this.setState({ showError: true });
+    });
     event.preventDefault();
   }
 
@@ -89,6 +91,7 @@ class Signin extends React.Component {
           <br /><br />
           <button type="submit" value="Submit" style={btnStyle}>Submit</button>
         </form>
+        {this.state.showError ? <p>Invalid username or password </p> : null }
       </div>
     );
   }
