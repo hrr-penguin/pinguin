@@ -17,6 +17,15 @@ class Feed extends React.Component {
     var feeds = [];
     for (var i = 0; i < urls.length; i++) {
       feednami.load(urls[i], (feed) => {
+        let entries = feed.feed.entries;
+        let parser = new DOMParser();
+        entries.forEach( function(entry) {
+          let desc = parser.parseFromString(entry.description, 'text/html');
+          let img = desc.getElementByTagName('img')[0];
+          entry.image.url = img.src;
+          entry.image.alt = img.alt;
+          entry.summary = entry.summary.replace(/<(?!\/?a(?=>|\s.*>))\/?.*?>/g, '');
+        });
         feeds.push(feed);
         this.setState({ feeds: feeds });
       });
@@ -51,7 +60,7 @@ class Feed extends React.Component {
           })
         }
       </div>
-    )
+    );
   }
 }
 
