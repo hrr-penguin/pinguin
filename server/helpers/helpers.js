@@ -45,23 +45,38 @@ module.exports = {
   },
 
   votingLogic: function(req, res) {
-   Models.article.get(req.param.yay, req.param.nay, req.param.fake, req.param.legit, function(err, results) {
+    Models.article.get(req.param.yays, req.param.nays, req.param.fakes, req.param.legits, req.param.ratings, req.param.rating_count,function(err, results) {
       if (err) {
         console.log('helpers.votingLogic error: ', err);
       } else {
-        if (req.param.yays !== null ) {
-          res.json({ yays: req.param.yays + 1 });
+        if (req.body.comment.yay !== null) {
+          yays = req.param.yays + 1;
         }
-        if (req.param.nays !== null ) {
-          res.json({ nays: req.param.nays + 1 });
+        if (req.body.comment.nays !== null) {
+          nays = req.param.nays + 1;
         }
-
-        if (req.param.fake !== null ) {
-          res.json({ fake: req.param.fake + 1 });
+        if (req.body.comment.fakes !== null) {
+          fakes = req.param.fakes + 1;
         }
-        if (req.param.legit !== null ) {
-          res.json({ legit: req.param.legit + 1 });
+        if (req.body.comment.legits !== null) {
+          legits = req.param.legits + 1;
         }
+        if (req.body.comment.ratings !== null) {
+          if (req.param.rating_count === 0) {
+            ratings = req.body.comment.rating;
+            rating_count = 1;
+          } else {
+            ratings = ((req.param.ratings + req.body.comment.rating)/req.param.rating_count);
+            rating_count = req.param.rating_count + 1;
+          }
+        }
+        Models.article.post(req.body.url, yays, nays, fakes, legits, ratings, rating_count, function(err, results) {
+          if (err) {
+            console.log('helpers.votingLogic error: ', err);
+          } else {
+            res.sendStatus(201);
+          }
+        });
       }
     });
   },
@@ -71,6 +86,7 @@ module.exports = {
       if (err) {
         console.log('helpers.postComment error: ', err);
       } else {
+        votingLogic(req, res);
         res.sendStatus(201);
       }
     });
