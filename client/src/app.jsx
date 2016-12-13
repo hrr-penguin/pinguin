@@ -39,9 +39,7 @@ class App extends React.Component {
     return (
       <div style={divStyle}>
         <h1>Pinguin</h1>
-        {
-          this.state.isSignedIn ? <IsSignedIn handleSignOutClick={this.handleSignOutClick}/> : <NotSignedIn />
-        }
+        {this.state.isSignedIn ? <IsSignedIn handleSignOutClick={this.handleSignOutClick}/> : <NotSignedIn />}
         {this.props.children && React.cloneElement(this.props.children, {updateAuth: this.updateAuth})}
       </div>
     )

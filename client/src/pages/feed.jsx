@@ -21,7 +21,7 @@ class Feed extends React.Component {
         let parser = new DOMParser();
         entries.forEach( function(entry) {
           let desc = parser.parseFromString(entry.description, 'text/html');
-          let img = desc.getElementByTagName('img')[0];
+          let img = desc.getElementsByTagName('img')[0];
           entry.image.url = img.src;
           entry.image.alt = img.alt;
           entry.summary = entry.summary.replace(/<(?!\/?a(?=>|\s.*>))\/?.*?>/g, '');
@@ -30,6 +30,7 @@ class Feed extends React.Component {
         this.setState({ feeds: feeds });
       });
     }
+    console.log(feeds);
   }
 
   componentWillMount() {
