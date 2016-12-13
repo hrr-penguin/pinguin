@@ -1,5 +1,8 @@
 import React from 'react';
+
+import FeedItem from './Feeditem';
 import Comments from './comments.jsx';
+
 
 class FeedEntryList extends React.Component {
   constructor(props) {
