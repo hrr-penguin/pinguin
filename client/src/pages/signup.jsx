@@ -41,18 +41,52 @@ class Signup extends React.Component {
   }
 
   render() {
+    const divStyle = {
+      width: '50%',
+      margin: 'auto',
+      textAlign: 'center',
+      padding: '100px'
+    };
+
+    const formStyle = {
+      display: 'inline-block',
+      textAlign: 'center'
+    };
+
+    const btnStyle = {
+      width: '100px',
+      height: '40px',
+      backgroundColor: '#000',
+      color: '#fff',
+      borderColor: '#FF9800',
+      borderStyle: 'solid',
+      borderWidth: '3px',
+      outline: 'none'
+    };
+
+    const inputStyle = {
+      width: '200px',
+      height: '32px',
+      backgroundColor: '#000',
+      color: '#fff',
+      borderColor: '#FF9800',
+      borderStyle: 'solid',
+      borderWidth: '3px',
+      outline: 'none',
+      marginLeft: '5px'
+    };
+
     return (
-      <div>
-        <h1>SIGNUP</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Username: <input type="text" name="username" value={this.state.username} onChange={this.handleChangeUserName}/>
-          </label>
+      <div style={divStyle}>
+        <h1>Sign Up</h1>
+        <form onSubmit={this.handleSubmit} style={formStyle}>
+          <label>Username</label><br />
+          <input type="text" name="username" value={this.state.username} onChange={this.handleChangeUserName} style={inputStyle}/>
           <br/>
-          <label>
-            Password: <input type="text" name="password" value={this.state.password} onChange={this.handleChangePassword}/>
-          </label>
-          <button type="submit" value="Submit">Submit</button>
+          <label>Password</label><br />
+          <input type="text" name="password" value={this.state.password} onChange={this.handleChangePassword} style={inputStyle}/>
+          <br /><br />
+          <button type="submit" value="Submit" style={btnStyle}>Submit</button>
         </form>
       </div>
     )

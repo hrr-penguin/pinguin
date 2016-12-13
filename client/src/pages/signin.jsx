@@ -86,7 +86,7 @@ class Signin extends React.Component {
           <label htmlFor="password">Password</label><br />
           <input id="password" type="password" name="password" value={this.state.password}onChange={this.handleChangePassword} style={inputStyle}/>
           <br /><br />
-          <button type="submit" value="Submit"  style={btnStyle}>Submit</button>
+          <button type="submit" value="Submit" style={btnStyle}>Submit</button>
         </form>
       </div>
     )
