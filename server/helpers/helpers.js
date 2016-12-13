@@ -49,16 +49,17 @@ module.exports = {
       if (err) {
         console.log('helpers.votingLogic error: ', err);
       } else {
-        if (req.param.yays !== null )
+        if (req.param.yays !== null ) {
           res.json({ yays: req.param.yays + 1 });
         }
-        if (req.param.nays !== null )
+        if (req.param.nays !== null ) {
           res.json({ nays: req.param.nays + 1 });
         }
-        if (req.param.fake !== null )
+
+        if (req.param.fake !== null ) {
           res.json({ fake: req.param.fake + 1 });
         }
-        if (req.param.legit !== null )
+        if (req.param.legit !== null ) {
           res.json({ legit: req.param.legit + 1 });
         }
       }

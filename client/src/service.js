@@ -54,7 +54,6 @@ module.exports = {
         contentType: "application/json",
         success: resolve,
         error: reject
-        },
       });
     });
   },
