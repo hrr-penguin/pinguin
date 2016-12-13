@@ -29,8 +29,8 @@ CREATE TABLE article (
   nays int NOT NULL DEFAULT 0,
   fakes int NOT NULL DEFAULT 0,
   legits int NOT NULL DEFAULT 0,
-  ratings int(5) unsigned DEFAULT NULL,
-  rating_count int NOT NULL DEFAULT 0,
+  ratings int DEFAULT NULL,
+  rating_count int NOT NULL DEFAULT 0
 );
 
 CREATE TABLE comment (
