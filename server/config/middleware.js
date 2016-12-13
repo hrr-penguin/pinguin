@@ -83,7 +83,7 @@ module.exports = function(app, express) {
     clientID: config.GOOGLE_CLIENT_ID,
     clientSecret: config.GOOGLE_CLIENT_SECRET,
     callbackURL: 'http://localhost:8000/api/google/return'
-  }, function(accessToken, redreshToken, profile, done) {
+  }, function(accessToken, refreshToken, profile, done) {
     Models.users.get(profile.emails[0].value, function(err, results) {
       if (err) { return done(err); }
       if (!results.length) {

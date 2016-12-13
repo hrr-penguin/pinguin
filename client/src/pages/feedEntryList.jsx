@@ -22,18 +22,11 @@ class FeedEntryList extends React.Component {
 
     return (
       <div>
-          {
-            entries.map( (entry) => {
-              return (
-                <div className="entry" key={count++}>
-                  <ul >
-                    <li><a href={entry.link} target="_blank">{entry.title}</a><button onClick={this.handleComments.bind(this)}></button></li>
-                    {this.state.showComments ? <Comments link={entry.link}/> : null}
-                  </ul>
-                </div>
-              )
-            })
-          }
+        {entries.map( (entry) => {
+          return (
+            <FeedItem info={entry} />
+          )})
+        }
       </div>
     )
   }

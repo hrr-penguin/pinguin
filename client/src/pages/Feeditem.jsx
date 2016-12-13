@@ -12,19 +12,16 @@ class FeedItem extends React.Component {
       borderColor: 'black',
       borderStyle: 'solid',
       margin: '5px',
-      display: 'flex'
+      display: 'flex',
+      fontFamily: 'Arial'
     };
     const div2Styles = {
-      // width: '150px',
-      // height: '150px',
-      // overflow: 'none'
+      margin: '10px'
     }
     return (
       <div style={div1Styles}>
+        <img src={this.props.info.image.url} alt={this.props.info.image.alt} height="150" width="150"/>
         <div style={div2Styles}>
-          <img src={this.props.info.image.url} alt={this.props.info.image.alt}/>
-        </div>
-        <div>
           <a href={this.props.info.link} target="_blank"><h1>{this.props.info.title}</h1></a>
           {this.props.info.description.slice(0,100)}
         </div>
