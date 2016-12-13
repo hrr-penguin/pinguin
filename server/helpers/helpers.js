@@ -45,28 +45,28 @@ module.exports = {
   },
 
   votingLogic: function(req, res) {
-    Models.article.get(req.param.yays, req.param.nays, req.param.fakes, req.param.legits, function(err, results) {
+    Models.article.get(req.param.yays, req.param.nays, req.param.fakes, req.param.legits, req.param.ratings, req.param.rating_count,function(err, results) {
       if (err) {
         console.log('helpers.votingLogic error: ', err);
       } else {
-        if (req.body.yays !== null) {
+        if (req.body.comment.yay !== null) {
           yays = req.param.yays + 1;
         }
-        if (req.body.nays !== null) {
+        if (req.body.comment.nays !== null) {
           nays = req.param.nays + 1;
         }
-        if (req.body.fakes !== null) {
+        if (req.body.comment.fakes !== null) {
           fakes = req.param.fakes + 1;
         }
-        if (req.body.legits !== null) {
+        if (req.body.comment.legits !== null) {
           legits = req.param.legits + 1;
         }
-        if (req.body.ratings !== null) {
+        if (req.body.comment.ratings !== null) {
           if (req.param.rating_count === 0) {
-            ratings = req.body.rating;
+            ratings = req.body.comment.rating;
             rating_count = 1;
           } else {
-            ratings = (req.param.ratings + req.body.rating)/req.param.rating_count);
+            ratings = ((req.param.ratings + req.body.comment.rating)/req.param.rating_count);
             rating_count = req.param.rating_count + 1;
           }
         }
@@ -74,7 +74,7 @@ module.exports = {
           if (err) {
             console.log('helpers.votingLogic error: ', err);
           } else {
-              res.sendStatus(201);
+            res.sendStatus(201);
           }
         });
       }
