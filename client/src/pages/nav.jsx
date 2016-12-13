@@ -11,11 +11,6 @@ class Nav extends React.Component {
     };
   }
 
-  logout() {
-    Util.signOut();
-    console.log('tacos from logout');
-  }
-
   navigate() {
     this.props.history.pushState(null, "/");
   }

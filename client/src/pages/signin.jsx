@@ -38,22 +38,55 @@ class Signin extends React.Component {
       console.log('burritos');
     })
     event.preventDefault();
-    // console.log("it was submitted", event)
   }
 
   render() {
+    const divStyle = {
+      width: '50%',
+      margin: 'auto',
+      textAlign: 'center',
+      padding: '100px'
+    };
+
+    const formStyle = {
+      display: 'inline-block',
+      textAlign: 'center'
+    };
+
+    const btnStyle = {
+      width: '100px',
+      height: '40px',
+      backgroundColor: '#000',
+      color: '#fff',
+      borderColor: '#FF9800',
+      borderStyle: 'solid',
+      borderWidth: '3px',
+      outline: 'none'
+    };
+
+    const inputStyle = {
+      width: '200px',
+      height: '32px',
+      backgroundColor: '#000',
+      color: '#fff',
+      borderColor: '#FF9800',
+      borderStyle: 'solid',
+      borderWidth: '3px',
+      outline: 'none',
+      marginLeft: '5px'
+    };
+
     return (
-      <div>
-        <h1>SIGNIN</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Username: <input type="text" name="username" value={this.state.username} onChange={this.handleChangeUserName}/>
-          </label>
+      <div style={divStyle}>
+        <h1>Sign In</h1>
+        <form onSubmit={this.handleSubmit} style={formStyle}>
+          <label htmlFor="username">Username</label><br />
+            <input id="username" type="text" name="username" value={this.state.username} onChange={this.handleChangeUserName} style={inputStyle}/>
           <br/>
-          <label>
-            Password: <input type="text" name="password" value={this.state.password}onChange={this.handleChangePassword}/>
-          </label>
-          <button type="submit" value="Submit">Submit</button>
+          <label htmlFor="password">Password</label><br />
+          <input id="password" type="password" name="password" value={this.state.password}onChange={this.handleChangePassword} style={inputStyle}/>
+          <br /><br />
+          <button type="submit" value="Submit"  style={btnStyle}>Submit</button>
         </form>
       </div>
     )
