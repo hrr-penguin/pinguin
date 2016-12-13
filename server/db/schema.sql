@@ -26,7 +26,8 @@ CREATE TABLE users_feeds (
 CREATE TABLE comment (
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   article_id int NOT NULL,
-  comment text NOT NULL UNIQUE,
+  user_id int NOT NULL UNIQUE,
+  comment text NOT NULL,
   yay boolean NOT NULL DEFAULT 0,
   nay boolean NOT NULL DEFAULT 0,
   fake boolean NOT NULL DEFAULT 0,
@@ -48,8 +49,10 @@ CREATE TABLE article (
 
 CREATE TABLE article_comments (
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  user_id int NOT NULL,
   comment_id int NOT NULL,
   article_id int NOT NULL,
+  FOREIGN KEY(user_id) REFERENCES user(id),
   FOREIGN KEY(comment_id) REFERENCES comment(id),
   FOREIGN KEY(article_id) REFERENCES article(id)
 );
