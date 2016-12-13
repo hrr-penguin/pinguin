@@ -35,7 +35,6 @@ class Signup extends React.Component {
     })
       .then( (data) => {
         this.props.updateAuth();
-        console.log(this.props.updateAuth);
         hashHistory.push('/feed');
         this.setState( {showError: false} );
       })
