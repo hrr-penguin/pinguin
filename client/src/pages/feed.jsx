@@ -44,18 +44,17 @@ class Feed extends React.Component {
     const divStyle = {
       height: '100%',
       width: '90%',
-      margin: 'auto'
+      margin: 'auto',
+      fontFamily: 'Arial'
     }
     return (
       <div id="feed" className="feed-container" style={divStyle}>
         {
           feeds.map( (obj) => {
             return (
-              <div key={obj.feed.meta['rss:title']['#']}>
-                <label>{obj.feed.meta['rss:title']['#']}</label>
-                <ul>
-                  <FeedEntryList entries={obj.feed.entries}/>
-                </ul>
+              <div key={obj.feed.meta.title}>
+                <h1>{obj.feed.meta.title}</h1>
+                <FeedEntryList entries={obj.feed.entries}/>
               </div>
             )
           })

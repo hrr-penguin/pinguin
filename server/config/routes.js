@@ -12,7 +12,7 @@ module.exports = function(app, express) {
   ] }), helper.signIn);
 
   app.get('/api/google/return', passport.authenticate('google', { failureRedirect: '/#/signin' }), function(req, res) {
-    res.redirect('/');
+    res.sendStatus(201);
   });
 
   app.get('/api/signout', loggedIn, helper.signOut);
