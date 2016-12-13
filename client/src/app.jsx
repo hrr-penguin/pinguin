@@ -31,8 +31,13 @@ class App extends React.Component {
   }
 
   render() {
+    const divStyle = {
+      backgroundColor: '#fff',
+      width: '80%',
+      margin: 'auto'
+    };
     return (
-      <div>
+      <div style={divStyle}>
         <h1>Pinguin</h1>
         {
           this.state.isSignedIn ? <IsSignedIn handleSignOutClick={this.handleSignOutClick}/> : <NotSignedIn />

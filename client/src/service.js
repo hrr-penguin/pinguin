@@ -46,8 +46,6 @@ module.exports = {
   },
   signIn: function (pinguin) {
     var Promise = promise.Promise;
-    console.log("Promise logger",Promise);
-    console.log("Hitting Util signIn",pinguin);
     return new Promise(function (resolve, reject) {
       $.ajax({
         url: "/api/signin",
@@ -56,6 +54,7 @@ module.exports = {
         contentType: "application/json",
         success: resolve,
         error: reject
+        },
       });
     });
   },
