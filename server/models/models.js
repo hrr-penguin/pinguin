@@ -4,7 +4,7 @@ const saltRounds = 10;
 
 let replaceIntoJoin = function(params, callback) {
   let query = 'REPLACE INTO users_feeds (user_id, feed_id) VALUES (?, ?)';
-  db. query(query, params, function(err, results) {
+  db.query(query, params, function(err, results) {
     if (err) {
       console.log('models.replaceIntoJoin: ', err);
     } else {

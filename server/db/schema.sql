@@ -1,12 +1,13 @@
+DROP DATABASE rss;
 CREATE DATABASE rss;
 
 USE rss;
 
 CREATE TABLE users (
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  username varchar(20) NOT NULL UNIQUE,
+  username varchar(50) NOT NULL UNIQUE,
   password varchar(255) NOT NULL,
-  subscription int DEFAULT 0
+  subscription int
 );
 
 CREATE TABLE feeds (
@@ -15,14 +16,13 @@ CREATE TABLE feeds (
 );
 
 CREATE TABLE users_feeds (
+  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id int NOT NULL,
   feed_id int NOT NULL,
   FOREIGN KEY(user_id) REFERENCES users(id),
-  FOREIGN KEY(feed_id) REFERENCES feeds(id),
-  UNIQUE (user_id, feed_id)
+  FOREIGN KEY(feed_id) REFERENCES feeds(id)
 );
 
--- new tables for comment and article plus join table
 CREATE TABLE comment (
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   article_id int NOT NULL,
