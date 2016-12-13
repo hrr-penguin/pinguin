@@ -107,9 +107,15 @@ module.exports = {
   },
   article: {
     get: function(url, callback) {
-      let query = 'SELECT yays,nays,fakes,legits FROM article WHERE article.url = ?';
+      let query = 'SELECT yays,nays,fakes,legits,ratings,rating_count FROM article WHERE article.url = ?';
       db.query(query, url, function(err, results) {
         callback(err, results);
+      });
+    },
+    post: function(url, yaysparam, naysparam, fakesparam, legitsparam, ratingsparam, rating_countparam, callback) {
+      let query = 'UPDATE article set yays=yaysparam, nays=naysparam, fakes=fakesparam, legits=legitsparam, ratings=ratingsparam, rating_count=rating_countparam) WHERE article.url = ?';
+      db.query(query, url, function(err, results) {
+          callback(err, results);
       });
     }
   }
