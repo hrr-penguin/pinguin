@@ -9,7 +9,7 @@ class Signup extends React.Component {
     this.state = {
       username: '',
       password: '',
-      isValid: true
+      showError: false
     };
     this.handleChangeUserName = this.handleChangeUserName.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
@@ -32,13 +32,19 @@ class Signup extends React.Component {
     Util.signUp({
       username: this.state.username,
       password: this.state.password
-    });
-    // if(this.state.isValid) {
-    //   hashHistory.push('/feed');
-    // }
+    })
+      .then( (data) => {
+        this.props.updateAuth();
+        console.log(this.props.updateAuth);
+        hashHistory.push('/feed');
+        this.setState( {showError: false} );
+      })
+      .catch( (err) => {
+        this.setState({ showError: true });
+      });
     event.preventDefault();
-    // console.log("it was submitted", event)
   }
+    // console.log("it was submitted", event)
 
   render() {
     return (
@@ -54,9 +60,11 @@ class Signup extends React.Component {
           </label>
           <button type="submit" value="Submit">Submit</button>
         </form>
+        { this.state.showError ? <p> This username has already been taken. Please choose a different username </p> : null }
       </div>
     )
   }
 }
+
 
 export default Signup;

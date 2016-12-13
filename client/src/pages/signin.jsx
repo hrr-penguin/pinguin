@@ -1,6 +1,6 @@
 import React from 'react';
 import Util from '../service.js';
-import { hashHistory } from 'react-router'
+import { hashHistory } from 'react-router';
 
 
 class Signin extends React.Component {
@@ -9,7 +9,7 @@ class Signin extends React.Component {
     this.state = {
       username: '',
       password: '',
-      isValid: true
+      showError: false
     };
     this.handleChangeUserName = this.handleChangeUserName.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
@@ -32,13 +32,15 @@ class Signin extends React.Component {
     Util.signIn({
       username: this.state.username,
       password: this.state.password
-    });//.then( (data) => {
-    //   if(this.state.isValid) {
-    //     hashHistory.push('/feed');
-    //   }
-    // });
+    }).then( (data) => {
+      this.props.updateAuth();
+      console.log(this.props.updateAuth);
+      hashHistory.push('/feed');
+    })
+    .catch( (err) => {
+      this.setState({ showError: true });
+    });
     event.preventDefault();
-    // console.log("it was submitted", event)
   }
 
   render() {
@@ -53,8 +55,9 @@ class Signin extends React.Component {
           <label>
             Password: <input type="text" name="password" value={this.state.password}onChange={this.handleChangePassword}/>
           </label>
-          <button type="submit" value="Submit">Submit</button>
+          <button type="submit" value="Submit">Sign In</button>
         </form>
+        {this.state.showError ? <p>Invalid username or password </p> : null }
       </div>
     )
   }

@@ -11,11 +11,11 @@ import Signup from './pages/signup';
 import Signin from './pages/Signin';
 import Signout from './pages/signout';
 
+
 ReactDOM.render(
   <Router history={ hashHistory } >
     <Route path="/" component={ App } >
-      <IndexRoute component={ Pinguin }></IndexRoute>
-      <Route path="pinguin" component={ Pinguin } />
+      <IndexRoute component={ Signin }></IndexRoute>
       <Route path="feed" component={ Feed } />
       <Route path="addpinguin" component={ AddPinguin } />
       <Route path="signup" component={ Signup } />
