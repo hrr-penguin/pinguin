@@ -13,8 +13,8 @@ mysql -u root < server/db/schema.sql<br>
 
 #To run grunt
 on the command line type<br>
-webpack -w<br>
-grunt<br>
+webpack -w (you can just use webpack for running locally, you don't need to use grunt to view the website)<br>
+grunt(grunt does deployment stuff, it also executes webpack too)<br>
 
 # To start Server
 cd to pinguin<br>
