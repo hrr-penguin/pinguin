@@ -1,19 +1,10 @@
 import React from 'react';
 
 import FeedItem from './Feeditem';
-import Comments from './comments.jsx';
-
 
 class FeedEntryList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showComments : false
-    }
-  }
-
-  handleComments() {
-    this.setState({showComments: !this.state.showComments});
   }
 
   render() {
@@ -24,7 +15,7 @@ class FeedEntryList extends React.Component {
       <div>
         {entries.map( (entry) => {
           return (
-            <FeedItem info={entry} />
+            <FeedItem key={count++} info={entry} />
           )})
         }
       </div>

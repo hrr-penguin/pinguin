@@ -81,7 +81,6 @@ class Signin extends React.Component {
     return (
       <div style={divStyle}>
         <h1>Sign In</h1>
-        <a href="/api/google">Sign In with Google</a>
         <form onSubmit={this.handleSubmit} style={formStyle}>
           <label htmlFor="username">Username</label><br />
           <input id="username" type="text" name="username" value={this.state.username} onChange={this.handleChangeUserName} style={inputStyle}/>
@@ -91,6 +90,9 @@ class Signin extends React.Component {
           <br /><br />
           <button type="submit" value="Submit" style={btnStyle}>Submit</button>
         </form>
+        <br />
+        <br />
+        <a href="/api/google">Sign In with Google</a>
         {this.state.showError ? <p>Invalid username or password </p> : null }
       </div>
     );
