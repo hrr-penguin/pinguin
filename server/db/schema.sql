@@ -33,7 +33,7 @@ CREATE TABLE article (
   rating_count int NOT NULL DEFAULT 0
 );
 
-CREATE TABLE comment (
+CREATE TABLE comments (
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   article_id int NOT NULL,
   user_id int NOT NULL UNIQUE,
@@ -53,6 +53,6 @@ CREATE TABLE article_comments (
   comment_id int NOT NULL,
   article_id int NOT NULL,
   FOREIGN KEY(user_id) REFERENCES users(id),
-  FOREIGN KEY(comment_id) REFERENCES comment(id),
+  FOREIGN KEY(comment_id) REFERENCES comments(id),
   FOREIGN KEY(article_id) REFERENCES article(id)
 );
