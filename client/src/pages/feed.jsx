@@ -45,6 +45,7 @@ class Feed extends React.Component {
       height: '100%',
       width: '90%',
       margin: 'auto',
+      marginTop: '20px',
       fontFamily: 'Arial'
     }
     return (
