@@ -8,12 +8,10 @@ class FeedItem extends React.Component {
 
   render() {
     const div1Styles = {
-      border: '1px',
-      borderColor: 'black',
-      borderStyle: 'solid',
       margin: '5px',
       display: 'flex',
-      fontFamily: 'Arial'
+      fontFamily: 'Arial',
+      textColor: '#FF9800'
     };
     const div2Styles = {
       margin: '10px'
